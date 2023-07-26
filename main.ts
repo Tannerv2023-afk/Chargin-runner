@@ -1,4 +1,11 @@
-let mySprite = sprites.create(img`
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (tiles.tileAtLocationIsWall(mySprite.tilemapLocation().getNeighboringLocation(CollisionDirection.Bottom))) {
+        mySprite.vy += -150
+    }
+})
+let mySprite: Sprite = null
+scene.setBackgroundColor(9)
+mySprite = sprites.create(img`
     . . . . 2 2 2 2 2 e . . . . . . 
     . . . 2 2 2 2 d 2 2 e . . . . . 
     . . e 2 2 2 2 2 2 2 e . . . . . 
@@ -88,5 +95,10 @@ mySprite,
     . . . . e e e e f f . . . . . . 
     `],
 100,
-characterAnimations.rule(Predicate.NotMoving)
+characterAnimations.rule(Predicate.MovingRight)
 )
+mySprite.ay = 100
+mySprite.ax = 30
+tiles.setCurrentTilemap(tilemap`level1`)
+tiles.placeOnRandomTile(mySprite, assets.tile`myTile`)
+scene.cameraFollowSprite(mySprite)
