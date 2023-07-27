@@ -1,6 +1,6 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (tiles.tileAtLocationIsWall(mySprite.tilemapLocation().getNeighboringLocation(CollisionDirection.Bottom))) {
-        mySprite.vy += -150
+        mySprite.vy += -50
     }
 })
 let mySprite: Sprite = null
